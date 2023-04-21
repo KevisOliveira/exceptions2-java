@@ -42,31 +42,17 @@ public class Program {
 			System.out.print("Check-out date (dd/MM/yyyy): ");
 			checkOut = sdf.parse(sc.next());
 			
-			//Datas não podem ser no passado do tempo atual
-			Date now = new Date();
+			String error = reservation.updateDates(checkIn, checkOut);
 			
-			if(checkIn.before(now) || checkOut.before(now)) {
-				System.out.println("Reservation dates for update must be future dates.");
+			if(error != null) {
+				System.out.println("Error in reservation: " + error);
 			}
-			
-			//Atualizar as datas
-			reservation.updateDates(checkIn, checkOut);
-			
-			System.out.println("Reservation: " + reservation);
-		}
-		
-		
-
-	
-		
-		
-		
-		
-		
-		
-		
+			else {
+				System.out.println("Reservation: " + reservation);
+			}
+			}
 		sc.close();
+		}
 
+		
 	}
-
-}
